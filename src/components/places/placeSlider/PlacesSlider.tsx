@@ -1,6 +1,7 @@
 import React from 'react'
+// import { Navigation } from 'swiper'
 import { Swiper } from 'swiper/react'
-import { Navigation } from 'swiper'
+
 import 'swiper/scss'
 import 'swiper/scss/navigation'
 
@@ -13,12 +14,15 @@ interface IProps {
 }
 
 function PlacesSlider({ children }: IProps) {
+  const navigationPrevRef = React.useRef(null)
+  const navigationNextRef = React.useRef(null)
+
   return (
     <div className={styles.slider}>
-      <button className={[styles.prev, styles.btn, 'prev'].join(' ')}>
+      <button ref={navigationPrevRef} className={[styles.prev, styles.btn, 'prev'].join(' ')}>
         <MdKeyboardArrowLeft size={25} />
       </button>
-      <button className={[styles.next, styles.btn, 'next'].join(' ')}>
+      <button ref={navigationNextRef} className={[styles.next, styles.btn, 'next'].join(' ')}>
         <MdKeyboardArrowRight size={25} />
       </button>
       <Swiper
@@ -26,10 +30,10 @@ function PlacesSlider({ children }: IProps) {
         slidesPerView={6}
         effect={'cards'}
         speed={300}
-        modules={[Navigation]}
+        // modules={[Navigation]}
         navigation={{
-          prevEl: '.prev',
-          nextEl: '.next',
+          prevEl: navigationPrevRef.current,
+          nextEl: navigationNextRef.current,
         }}
         direction={'horizontal'}
         breakpoints={{
