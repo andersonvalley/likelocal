@@ -1,0 +1,15 @@
+.bg {
+  padding: 48px;
+  background: var(--bg-accent);
+  border-radius: 48px;
+
+  @media (max-width: 900px) {
+    padding: 40px 20px;
+    border-radius: 38px;
+  }
+
+  @media (max-width: 450px) {
+    padding: 30px 20px;
+    border-radius: 28px;
+  }
+}
